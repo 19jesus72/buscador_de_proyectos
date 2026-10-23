@@ -1,0 +1,42 @@
+#include <windows.h>
+#include "resource.h"
+
+// 1. Manifiesto XML Embebido (ID 1 = RT_MANIFEST para binarios ejecutables)
+1 RT_MANIFEST "app.manifest"
+
+// 2. Icono Principal Institucional de la Aplicacion
+IDI_APP_ICON ICON "app.ico"
+
+// 3. Estructura Formal de Version (Propiedades del Archivo .exe en Explorador de Windows)
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     APP_VERSION_MAJOR,APP_VERSION_MINOR,APP_VERSION_PATCH,APP_VERSION_BUILD
+PRODUCTVERSION  APP_VERSION_MAJOR,APP_VERSION_MINOR,APP_VERSION_PATCH,APP_VERSION_BUILD
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+FILEFLAGS       VS_FF_DEBUG
+#else
+FILEFLAGS       0x0L
+#endif
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040A04B0" // Idioma: Espanol (Espana/Tradicional), Codificacion: Unicode (1200)
+        BEGIN
+            VALUE "CompanyName",      APP_COMPANY_STR
+            VALUE "FileDescription",  APP_DESCRIPTION_STR
+            VALUE "FileVersion",      APP_VERSION_STR
+            VALUE "InternalName",     "DirectorioMC\0"
+            VALUE "LegalCopyright",   APP_COPYRIGHT_STR
+            VALUE "OriginalFilename", APP_ORIGINAL_FILENAME
+            VALUE "ProductName",      APP_NAME_STR
+            VALUE "ProductVersion",   APP_VERSION_STR
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x040A, 1200
+    END
+END
